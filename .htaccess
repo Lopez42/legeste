@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+## Redirection 301 https VERS http
+RewriteCond %{SERVER_PORT} ^443$
+RewriteCond %{HTTPS} =on
+RewriteRule ^(.*)$ http://www.http://www.lesgestes.fr [R=301,L]
+## Redirection 301 non-www VERS www
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule ^(.*)$ http://www.http://www.lesgestes.fr [R=301,L]
+## url inexistantes (404) > (301) page accueil
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . http://www.http://www.lesgestes.fr [L,R=301]
+RedirectPermanent / http://www.google.com/
